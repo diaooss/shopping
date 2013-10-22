@@ -51,7 +51,7 @@
     [_searchBar resignFirstResponder];
     
     UIImageView *resultImg = [[UIImageView alloc] initWithFrame:CGRectMake(110, 30, 100, 100)];
-    resultImg.image = [UIImage  imageNamed:@"icon@2x.png"];
+    resultImg.image = [UIImage  imageNamed:@"logo.png"];
     resultImg.tag = 1000;
     [self.view addSubview:resultImg];
     [resultImg release];

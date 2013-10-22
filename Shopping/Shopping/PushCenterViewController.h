@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PushCenterViewController : UIViewController
-
+@interface PushCenterViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,retain)NSMutableArray * contentArry;
 @end

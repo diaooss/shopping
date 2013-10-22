@@ -118,7 +118,11 @@
 		20E4E4501811295C0075FAD8 /* MyTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E4E44F1811295C0075FAD8 /* MyTabbar.m */; };
 		20E4E45A18112AEF0075FAD8 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E4E45918112AEF0075FAD8 /* MoreViewController.m */; };
 		20E4E45E18112B2F0075FAD8 /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E4E45D18112B2F0075FAD8 /* CollectViewController.m */; };
-		20E4E46218112CB40075FAD8 /* PushCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E4E46118112CB40075FAD8 /* PushCenterViewController.m */; };
+		235FDBEE1816821800F104FE /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235FDBED1816821800F104FE /* CategoryViewController.m */; };
+		235FDBF11816822800F104FE /* ChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235FDBF01816822800F104FE /* ChooseViewController.m */; };
+		235FDBF41816824000F104FE /* NameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 235FDBF31816824000F104FE /* NameCell.m */; };
+		235FDBF71816826200F104FE /* PushCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235FDBF61816826200F104FE /* PushCenterViewController.m */; };
+		235FDBFA1816827C00F104FE /* SetShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 235FDBF91816827C00F104FE /* SetShowCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -253,8 +257,16 @@
 		20E4E45918112AEF0075FAD8 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		20E4E45C18112B2F0075FAD8 /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewController.h; sourceTree = "<group>"; };
 		20E4E45D18112B2F0075FAD8 /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectViewController.m; sourceTree = "<group>"; };
-		20E4E46018112CB40075FAD8 /* PushCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushCenterViewController.h; sourceTree = "<group>"; };
-		20E4E46118112CB40075FAD8 /* PushCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushCenterViewController.m; sourceTree = "<group>"; };
+		235FDBEC1816821800F104FE /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		235FDBED1816821800F104FE /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		235FDBEF1816822800F104FE /* ChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseViewController.h; sourceTree = "<group>"; };
+		235FDBF01816822800F104FE /* ChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseViewController.m; sourceTree = "<group>"; };
+		235FDBF21816824000F104FE /* NameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameCell.h; sourceTree = "<group>"; };
+		235FDBF31816824000F104FE /* NameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameCell.m; sourceTree = "<group>"; };
+		235FDBF51816826200F104FE /* PushCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushCenterViewController.h; sourceTree = "<group>"; };
+		235FDBF61816826200F104FE /* PushCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushCenterViewController.m; sourceTree = "<group>"; };
+		235FDBF81816827C00F104FE /* SetShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetShowCell.h; sourceTree = "<group>"; };
+		235FDBF91816827C00F104FE /* SetShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetShowCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -637,8 +649,16 @@
 		20E4E45F18112C930075FAD8 /* PushCenterPage */ = {
 			isa = PBXGroup;
 			children = (
-				20E4E46018112CB40075FAD8 /* PushCenterViewController.h */,
-				20E4E46118112CB40075FAD8 /* PushCenterViewController.m */,
+				235FDBF51816826200F104FE /* PushCenterViewController.h */,
+				235FDBF61816826200F104FE /* PushCenterViewController.m */,
+				235FDBEC1816821800F104FE /* CategoryViewController.h */,
+				235FDBED1816821800F104FE /* CategoryViewController.m */,
+				235FDBEF1816822800F104FE /* ChooseViewController.h */,
+				235FDBF01816822800F104FE /* ChooseViewController.m */,
+				235FDBF81816827C00F104FE /* SetShowCell.h */,
+				235FDBF91816827C00F104FE /* SetShowCell.m */,
+				235FDBF21816824000F104FE /* NameCell.h */,
+				235FDBF31816824000F104FE /* NameCell.m */,
 			);
 			name = PushCenterPage;
 			sourceTree = "<group>";
@@ -799,7 +819,6 @@
 				20E4E4501811295C0075FAD8 /* MyTabbar.m in Sources */,
 				20E4E45A18112AEF0075FAD8 /* MoreViewController.m in Sources */,
 				20E4E45E18112B2F0075FAD8 /* CollectViewController.m in Sources */,
-				20E4E46218112CB40075FAD8 /* PushCenterViewController.m in Sources */,
 				207D23371814CB0800DFA190 /* ContentViewController.m in Sources */,
 				207D233B1814CB9500DFA190 /* ViewPagerController.m in Sources */,
 				207D233E1814CD3000DFA190 /* FirstViewController.m in Sources */,
@@ -812,6 +831,11 @@
 				2023929918166F7E00AD49F8 /* FeedBackpage.m in Sources */,
 				202392A01816773000AD49F8 /* EGORefreshTableFooterView.m in Sources */,
 				202392A11816773000AD49F8 /* EGORefreshTableHeaderView.m in Sources */,
+				235FDBEE1816821800F104FE /* CategoryViewController.m in Sources */,
+				235FDBF11816822800F104FE /* ChooseViewController.m in Sources */,
+				235FDBF41816824000F104FE /* NameCell.m in Sources */,
+				235FDBF71816826200F104FE /* PushCenterViewController.m in Sources */,
+				235FDBFA1816827C00F104FE /* SetShowCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

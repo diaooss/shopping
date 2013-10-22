@@ -38,7 +38,7 @@
     [self.view addSubview:resultImg];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btn.frame = CGRectMake(80, 250, 160, 60);
+    btn.frame = CGRectMake(80, self.view.bounds.size.height/2, 160, 60);
     [btn setTitleColor:[[UIColor greenColor] colorWithAlphaComponent:0.6] forState:UIControlStateNormal];
     [btn setTitle:@"版本更新" forState:UIControlStateNormal];
     [resultImg addSubview:btn];
