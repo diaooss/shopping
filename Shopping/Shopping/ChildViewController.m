@@ -14,6 +14,12 @@
 @end
 
 @implementation ChildViewController
+- (void)dealloc
+{
+    self.detailCateGoryArry = nil;
+
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +34,6 @@
 {
     self.dataSource = self;
     self.delegate = self;
-    self.navigationItem.title = @"子分类";
     
     
     [super viewDidLoad];
@@ -42,13 +47,12 @@
 }
 #pragma mark - ViewPagerDataSource
 - (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager {
-    return 7;
+    return [_detailCateGoryArry count];
 }
 - (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index {
     
     UILabel *label = [UILabel new];
-    NSArray *titleArry = [NSArray arrayWithObjects:@"子分类", nil];
-    label.text = [titleArry objectAtIndex:0];
+    label.text = [_detailCateGoryArry objectAtIndex:index];
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:13.0];
     label.textAlignment = NSTextAlignmentCenter;

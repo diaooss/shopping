@@ -9,5 +9,6 @@
 #import "ViewPagerController.h"
 
 @interface ChildViewController : ViewPagerController
+@property(nonatomic,retain)NSArray *detailCateGoryArry;
 
 @end

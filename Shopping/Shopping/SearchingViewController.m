@@ -13,6 +13,11 @@
 @end
 
 @implementation SearchingViewController
+- (void)dealloc
+{
+    [_searchBar release];
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,12 +33,13 @@
 -(void)loadView
 {
     self.view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    UISearchBar * searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-    [searchBar setPlaceholder:@"搜索折扣..."];
-    [searchBar setBarStyle:UIBarStyleDefault];
-    searchBar.delegate = self;
-    self.navigationItem.titleView = searchBar;
-    [searchBar becomeFirstResponder];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"category_tabbar_background.png"]];
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    [_searchBar setPlaceholder:@"搜索折扣"];
+    [_searchBar setBarStyle:UIBarStyleDefault];
+    _searchBar.delegate = self;
+    self.navigationItem.titleView = _searchBar;
+    [_searchBar becomeFirstResponder];
 }
 - (void)viewDidLoad
 {
@@ -42,16 +48,45 @@
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    UIAlertView *tips = [[[UIAlertView alloc] initWithTitle:@"正在施工..." message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    [tips show];
+    [_searchBar resignFirstResponder];
     
-}
+    UIImageView *resultImg = [[UIImageView alloc] initWithFrame:CGRectMake(110, 30, 100, 100)];
+    resultImg.image = [UIImage  imageNamed:@"icon@2x.png"];
+    resultImg.tag = 1000;
+    [self.view addSubview:resultImg];
+    [resultImg release];
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(60, 140, 200, 20)];
+    lab.text = @"海量折扣信息,即将上线...";
+    lab.backgroundColor = [UIColor clearColor];
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.tag = 2000;
+    lab.textColor = [[UIColor redColor] colorWithAlphaComponent:0.6];
+    [self.view addSubview:lab];
+    [lab release];
+    
+    
+   }
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     
     NSLog(@"正在增加%@",searchText);
 }
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text NS_AVAILABLE_IOS(3_0)
+{
+    return YES;
+}
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    UIImageView *img =(UIImageView *) [self.view viewWithTag:1000];
+    UILabel *l = (UILabel *)[self.view  viewWithTag:2000];
+    [img removeFromSuperview];
+    [l removeFromSuperview];
+    
+    
+    return YES;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
     return YES;
 }

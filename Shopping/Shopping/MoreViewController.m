@@ -7,7 +7,8 @@
 //
 
 #import "MoreViewController.h"
-
+#import "AboutUSViewController.h"
+#import "FeedBackpage.h"
 @interface MoreViewController ()
 
 @end
@@ -34,6 +35,7 @@
     setTab.delegate = self;
     [self.view addSubview:setTab];
     setTab.showsVerticalScrollIndicator = NO;
+    [setTab release];
 	// Do any additional setup after loading the view.
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -72,6 +74,12 @@
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"推送设置";
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                UISwitch *s = [[UISwitch alloc] initWithFrame:CGRectMake(210, 10, 0, 0)];
+                [cell.contentView addSubview:s];
+                s.on = YES;
+                [s addTarget:self action:@selector(isGetNotifation:) forControlEvents:UIControlEventValueChanged];
+                [s release];
                 break;
             case 1:
                 cell.textLabel.text = @"意见反馈";
@@ -85,6 +93,7 @@
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"给个好评";
+                
                 break;
             case 1:
                 cell.textLabel.text = @"更多应用";
@@ -99,6 +108,88 @@
 
     }
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+                [self clearCacheData];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 1:
+                [self goToFeedBack];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    if (indexPath.section == 2) {
+        switch (indexPath.row) {
+            case 0:
+                [self givePraise];
+                break;
+            case 2:
+                [self goToAboutUSPage];
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+-(void)clearCacheData
+{
+    UIAlertView *tips = [[[UIAlertView alloc] initWithTitle:nil message:@"清除缓存?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] autorelease];
+    [tips show];
+    
+    
+}
+-(void)isGetNotifation:(UISwitch *)sender
+{
+    
+    if (sender.on == YES) {
+        UIAlertView *tips = [[[UIAlertView alloc] initWithTitle:nil message:@"已开启推送" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [tips show];
+    }else
+    {
+        UIAlertView *tips = [[[UIAlertView alloc] initWithTitle:nil message:@"已关闭推送" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [tips show];
+        
+    }
+}
+-(void)goToAboutUSPage
+{
+    AboutUSViewController *usPage = [[AboutUSViewController alloc] init];
+    
+    [self.navigationController pushViewController:usPage animated:YES];
+    [usPage release];
+}
+-(void)goToFeedBack
+{
+    FeedBackpage *feed = [[FeedBackpage alloc] init];
+    [self.navigationController pushViewController:feed animated:YES];
+    [feed release];
+    
+}
+-(void)givePraise
+{
+    NSString *url = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d",626186545];//评论
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        UIAlertView *tips = [[[UIAlertView alloc] initWithTitle:nil message:@"已清除缓存" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [tips show];
+    }
 }
 - (void)didReceiveMemoryWarning
 {

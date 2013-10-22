@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ContentViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,retain)NSArray *detailCateGoryArry;
+#import "EGORefreshTableFooterView.h"
+#import "EGORefreshTableHeaderView.h"
+@interface ContentViewController : UIViewController<EGORefreshTableDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *homeTab;
+    //EGOHeader
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    //EGOFoot
+    EGORefreshTableFooterView *_refreshFooterView;
+    //
+    BOOL _reloading;//状态提示
+}
 @end
