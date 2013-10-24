@@ -19,6 +19,7 @@
         [self.contentView addSubview:_nametext];
         [_nametext setFont:[UIFont systemFontOfSize:16]];
         [_nametext setTextColor:[UIColor blackColor]];
+        [_nametext setReturnKeyType:UIReturnKeyDone];
         [_nametext setTextAlignment:NSTextAlignmentRight];
         [_nametext setPlaceholder:@"比如iphone"];
         [_nametext setDelegate:self];

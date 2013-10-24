@@ -30,7 +30,6 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"关于我们";
-    
     UIImageView *resultImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height-110)];
     resultImg.userInteractionEnabled = YES;
     resultImg.image = [UIImage  imageNamed:@"Default.png"];
@@ -44,12 +43,10 @@
     [resultImg addSubview:btn];
     btn.showsTouchWhenHighlighted = YES;
     [btn addTarget:self action:@selector(checkVersions) forControlEvents:UIControlEventTouchUpInside];
-    
     [resultImg release];
-
 	// Do any additional setup after loading the view.
 }
-
+#pragma mark--版本检查
 -(void)checkVersions
 {
     UIAlertView *tips = [[[UIAlertView alloc] initWithTitle:nil message:@"😊已是最新版." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];

@@ -11,7 +11,6 @@
 @interface CollectViewController ()
 
 @end
-
 @implementation CollectViewController
 - (void)dealloc
 {
@@ -20,7 +19,6 @@
     [collectTab release];
     [super dealloc];
 }
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,15 +27,12 @@
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor brownColor];
     self.navigationItem.title = @"收藏";
-    
     [self.navigationItem setRightBarButtonItem:self.editButtonItem];
-    
     collectTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height-90) style:UITableViewStylePlain];
     collectTab.dataSource = self;
     collectTab.delegate = self;
@@ -45,20 +40,14 @@
     collectTab.showsVerticalScrollIndicator = NO;
     [self createHeaderView];
     [self setFooterView];
-    
-
-	// Do any additional setup after loading the view.
+ 	// Do any additional setup after loading the view.
 }
-
+#pragma mark--配合删除样式
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-  
-
-    [collectTab setEditing:editing animated:YES];
+     [collectTab setEditing:editing animated:YES];
     [super setEditing:editing animated:YES];
-
 }
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
@@ -72,11 +61,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete){
-        
        
     }
 }
-
+#pragma mark--tableviewcell的代理方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 20;
@@ -95,23 +83,48 @@
     if (cell == nil) {
         cell = [[[MainCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reUseName] autorelease];
     }
-    if (indexPath.row%3 == 0) {
-        cell.fromLab.text = @"来自易讯商城";
-        cell.goodsImg.image = [UIImage imageNamed:@"21-136-11028.png"];
-    }else if (indexPath.row%2==0) {
-        cell.goodsImg.image = [UIImage imageNamed:@"21-049-10217-01.png"];
-        cell.fromLab.text = @"来自京东商城";
-    }else
-    {
-        cell.goodsImg.image = [UIImage imageNamed:@"21-136-11028.png"];
-        cell.fromLab.text = @"来自淘宝商城";
+    int flag = indexPath.row%7;
+    switch (flag) {
+        case 0:
+            cell.fromLab.text = @"来自易讯商城";
+            cell.titleLab.text = @"折扣汇尊享:低至五折,买1000立减100,更有超值豪礼等您来拿.";
+            break;
+        case 1:
+            cell.titleLab.text = @"1449.99包邮:最高减$200+大礼包满$500减$75,买$1000减$200优惠+免运费";
+            cell.fromLab.text = @"来自京东商城";
+            break;
+        case 2:
+            cell.titleLab.text = @"光棍节狂欢:最高减$200+大礼包满$500减$75,买$1000减$200优惠+免运费";
+            cell.fromLab.text = @"来自淘宝商城";
+            break;
+        case 3:
+            cell.fromLab.text = @"来自一号店";
+            cell.titleLab.text = @"何止是包邮:爱上一匹野马,只能没有草原,11.11日,数码百货,低至一折,全民狂欢";
+            break;
+        case 4:
+            cell.fromLab.text = @"来自苏宁易购";
+            cell.titleLab.text = @"对不起,是我们太便宜!全场五折封顶!部分商品,买一送一!全场买$1000减$200优惠+免运费";
+            break;
+        case 5:
+            cell.fromLab.text = @"来自国美在线";
+            cell.titleLab.text = @"折扣汇:自营家电百货,最高减$200+大礼包,全场免运费";
+            break;
+        case 6:
+            cell.fromLab.text = @"来自折扣汇自营";
+            cell.titleLab.text = @"折扣汇:全新ipad air ipadmini视网膜版,全球同步预售开启,即刻预定,立减$200+配件大礼包,支持货到付款.";
+            break;
+        default:
+            break;
     }
-    cell.titleLab.text = @"买$1000减$200优惠+免运费,买$1000减$200优惠+免运费,买$1000减$200优惠+免运费";
-    cell.reviewLab.text =  @"7";
-    cell.praiseLab.text = @"17";
+    int index = indexPath.row%10;
+    NSString *imageName = [NSString stringWithFormat:@"%d.png",index];
+    cell.imageView.image  = [UIImage imageNamed:imageName];
+    cell.reviewLab.text =  @"18";
+    cell.praiseLab.text = @"58";
     cell.updateTimeLab.text = @"一个小时前";
     return cell;
 }
+#pragma mark--点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -123,9 +136,7 @@
 }
 //初始化刷新视图
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-#pragma mark
 #pragma methods for creating and removing the header view
-
 -(void)createHeaderView{
     if (_refreshHeaderView && [_refreshHeaderView superview]) {
         [_refreshHeaderView removeFromSuperview];
@@ -134,11 +145,9 @@
                           CGRectMake(0.0f, 0.0f - self.view.bounds.size.height,
                                      self.view.frame.size.width, self.view.bounds.size.height)];
     _refreshHeaderView.delegate = self;
-    
 	[collectTab addSubview:_refreshHeaderView];
     [_refreshHeaderView refreshLastUpdatedDate];
 }
-
 -(void)removeHeaderView{
     if (_refreshHeaderView && [_refreshHeaderView superview]) {
         [_refreshHeaderView removeFromSuperview];
@@ -167,19 +176,15 @@
         [_refreshFooterView refreshLastUpdatedDate];
     }
 }
-
 -(void)removeFooterView{
     if (_refreshFooterView && [_refreshFooterView superview]) {
         [_refreshFooterView removeFromSuperview];
     }
     _refreshFooterView = nil;
 }
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
-
-#pragma mark-
 #pragma mark force to show the refresh headerView
 -(void)showRefreshHeader:(BOOL)animated{
 	if (animated)
@@ -196,7 +201,6 @@
         collectTab.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
 		[collectTab scrollRectToVisible:CGRectMake(0, 0.0f, 1, 1) animated:NO];
 	}
-    
     [_refreshHeaderView setState:EGOOPullRefreshLoading];
 }
 //===============
@@ -208,7 +212,6 @@
 	
 	//  should be calling your tableviews data source model to reload
 	_reloading = YES;
-    
     if (aRefreshPos == EGORefreshHeader) {
         // pull down to refresh data
         [self performSelector:@selector(refreshView) withObject:nil afterDelay:2.0];
@@ -216,21 +219,16 @@
         // pull up to load more data
         [self performSelector:@selector(getNextPageView) withObject:nil afterDelay:2.0];
     }
-    
 	// overide, the actual loading data operation is done in the subclass
 }
-
-#pragma mark -
 #pragma mark method that should be called when the refreshing is finished
 - (void)finishReloadingData{
 	
 	//  model should call this when its done loading
 	_reloading = NO;
-    
 	if (_refreshHeaderView) {
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:collectTab];
     }
-    
     if (_refreshFooterView) {
         [_refreshFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:collectTab];
         [self setFooterView];
@@ -238,10 +236,7 @@
     [collectTab reloadData];
     // overide, the actula reloading tableView operation and reseting position operation is done in the subclass
 }
-
-#pragma mark -
 #pragma mark UIScrollViewDelegate Methods
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	if (_refreshHeaderView) {
         [_refreshHeaderView egoRefreshScrollViewDidScroll:collectTab];
@@ -260,7 +255,6 @@
         [_refreshFooterView egoRefreshScrollViewDidEndDragging:scrollView];
     }
 }
-
 #pragma mark EGORefreshTableDelegate Methods
 - (void)egoRefreshTableDidTriggerRefresh:(EGORefreshPos)aRefreshPos{
 	
@@ -272,28 +266,18 @@
 }
 // if we don't realize this method, it won't display the refresh timestamp
 - (NSDate*)egoRefreshTableDataSourceLastUpdated:(UIView*)view{
-	
 	return [NSDate date]; // should return date data source was last changed
-	
 }
-
 //刷新调用的方法----------下拉刷新
 -(void)refreshView{
-    
-    
     [self testFinishedLoadData];
-    
 }
 //加载调用的方法----------上拉加载
 -(void)getNextPageView{
     
     [self removeFooterView];
     [self testFinishedLoadData];
-    
-    
-    
 }-(void)testFinishedLoadData{
-    
     [self finishReloadingData];
     [self setFooterView];
 }
@@ -301,7 +285,4 @@
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];//可以成功取消全部延迟方法。
 }
-
-
-
 @end

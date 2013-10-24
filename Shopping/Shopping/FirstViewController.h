@@ -7,8 +7,8 @@
 //
 
 #import "ViewPagerController.h"
-
-@interface FirstViewController : ViewPagerController
-@property(nonatomic,retain)NSArray *titleArry;
-@property(nonatomic,assign)int selected;
+#import "ContentViewController.h"
+@interface FirstViewController : ViewPagerController<contentDelegate>
+@property(nonatomic,retain)NSArray *titleArry;//一级分类的数组
+@property(nonatomic,assign)int selected;//分类被选中的标示
 @end

@@ -14,9 +14,7 @@
 @interface MyTabbar ()
 
 @end
-
 @implementation MyTabbar
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,15 +24,12 @@
         FirstViewController *homePage = [[[FirstViewController alloc] init] autorelease];
         UINavigationController *homePageNavc = [[[UINavigationController alloc] initWithRootViewController:homePage] autorelease];
         homePageNavc.tabBarItem.title = @"折扣";
-        
-        
-        PushCenterViewController *pushPage = [[[PushCenterViewController alloc] init] autorelease];
+         PushCenterViewController *pushPage = [[[PushCenterViewController alloc] init] autorelease];
         UINavigationController *pushPageNavc = [[[UINavigationController alloc] initWithRootViewController:pushPage] autorelease];
         pushPageNavc.tabBarItem.title = @"推送";
         CollectViewController *collectPage = [[[CollectViewController alloc] init] autorelease];
         UINavigationController *collectPageNavc = [[[UINavigationController alloc] initWithRootViewController:collectPage] autorelease];
         collectPageNavc.tabBarItem.title = @"收藏";
-        
         MoreViewController *morePage = [[[MoreViewController alloc] init]autorelease];
         UINavigationController *morePageNavc = [[[UINavigationController alloc] initWithRootViewController:morePage] autorelease];
         morePageNavc.tabBarItem.title = @"更多";
@@ -43,26 +38,18 @@
         [homePageNavc.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_deals_selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_deals.png"]];
         [pushPageNavc.tabBarItem  setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_subscribe_selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_subscribe.png"]];
         [collectPageNavc.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_favorites_selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_favorites.png"]];
-        
         [morePageNavc.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_more_selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_more.png"]];
-
     }
-    
-    
-    
-    return self;
+     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end

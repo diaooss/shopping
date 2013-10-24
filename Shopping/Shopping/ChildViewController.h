@@ -7,8 +7,8 @@
 //
 
 #import "ViewPagerController.h"
-
-@interface ChildViewController : ViewPagerController
-@property(nonatomic,retain)NSArray *detailCateGoryArry;
+#import "ContentViewController.h"
+@interface ChildViewController : ViewPagerController<contentDelegate>
+@property(nonatomic,retain)NSArray *detailCateGoryArry;//对应的子分类的标签
 
 @end

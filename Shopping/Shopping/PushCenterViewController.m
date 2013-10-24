@@ -42,6 +42,7 @@
     [self.view addSubview:pushSeg];
     [pushSeg release];
 }
+#pragma mark--seg切换的点击事件
 -(void)changeValue:(UISegmentedControl *)obj
 {
     if (obj.selectedSegmentIndex==0) {
@@ -57,13 +58,12 @@
     UIBarButtonItem * bar = [[UIBarButtonItem alloc]initWithTitle:@"添加规则" style:UIBarButtonItemStyleBordered target:self action:@selector(addThePushKeyWord)];
     [self.navigationItem setRightBarButtonItem:bar];
     [bar release];
-    
-    
     _shouTab = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 400) style:UITableViewStylePlain];
     [self.view addSubview:_shouTab];
     [_shouTab setDelegate:self];
     [_shouTab setDataSource:self];
 }
+#pragma mark--tableviewcell的代理方法
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
@@ -84,7 +84,6 @@
         [cell.label1 setText:[NSString stringWithFormat:@"   关键字:   %@",[[self.contentArry objectAtIndex:indexPath.row] valueForKey:@"one"]]];
         [cell.label2 setText:[NSString stringWithFormat:@"   分类:     %@",[[self.contentArry objectAtIndex:indexPath.row] valueForKey:@"tow"]]];
         [cell.label3 setText:[NSString stringWithFormat:@"   品牌:     %@",[[self.contentArry objectAtIndex:indexPath.row] valueForKey:@"there"]]];
-
     }
     return cell;
 }
@@ -98,11 +97,11 @@
     [self.navigationController pushViewController:choose animated:YES];
     [choose release];
 }
+#pragma mark--cell的点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChooseViewController * choose = [[ChooseViewController alloc]init];
     [choose setIsShowDeleteButton:NO];
-    
     choose.keyWord = [[self.contentArry objectAtIndex:indexPath.row] valueForKey:@"one"];
     choose.category = [[self.contentArry objectAtIndex:indexPath.row] valueForKey:@"tow"];
     choose.brand = [[self.contentArry objectAtIndex:indexPath.row] valueForKey:@"there"];

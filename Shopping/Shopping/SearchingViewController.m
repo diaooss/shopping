@@ -18,7 +18,6 @@
     [_searchBar release];
     [super dealloc];
 }
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -46,10 +45,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
+#pragma mark--执行搜索
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [_searchBar resignFirstResponder];
-    
     UIImageView *resultImg = [[UIImageView alloc] initWithFrame:CGRectMake(110, 30, 100, 100)];
     resultImg.image = [UIImage  imageNamed:@"logo.png"];
     resultImg.tag = 1000;
@@ -63,29 +62,25 @@
     lab.textColor = [[UIColor redColor] colorWithAlphaComponent:0.6];
     [self.view addSubview:lab];
     [lab release];
-    
-    
    }
+#pragma mark--搜索条正在被编辑时的监督
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    
     NSLog(@"正在增加%@",searchText);
 }
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text NS_AVAILABLE_IOS(3_0)
 {
     return YES;
 }
+#pragma mark--将要被填写内容时的监督
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     UIImageView *img =(UIImageView *) [self.view viewWithTag:1000];
     UILabel *l = (UILabel *)[self.view  viewWithTag:2000];
     [img removeFromSuperview];
     [l removeFromSuperview];
-    
-    
-    return YES;
+     return YES;
 }
-
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
     return YES;

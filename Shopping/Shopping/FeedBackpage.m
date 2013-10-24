@@ -80,9 +80,9 @@
            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"请填写反馈内容" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         [alert show];
         [alert release];
-
 }
 }
+#pragma mark--检查是否为空
 -(BOOL)strIsNull:(NSString *)str
 {
     if ([[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0) {
@@ -90,6 +90,7 @@
     }
     return NO;
 }
+#pragma mark--键盘回收
 -(void)tapBackGround
 {
     [feedTextField resignFirstResponder];
@@ -107,6 +108,7 @@
     [super viewDidLoad];
     
 }
+#pragma mark--返回视图
 -(void)back
 {
     [self.navigationController popViewControllerAnimated:YES];

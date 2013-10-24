@@ -10,6 +10,6 @@
 
 @interface SearchingViewController : UIViewController<UISearchBarDelegate,UISearchDisplayDelegate>
 {
-    UISearchBar * _searchBar;
+    UISearchBar * _searchBar;//搜索条
 }
 @end

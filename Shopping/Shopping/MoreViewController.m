@@ -12,9 +12,7 @@
 @interface MoreViewController ()
 
 @end
-
 @implementation MoreViewController
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -23,13 +21,11 @@
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.navigationItem.title = @"更多";
-    
     UITableView *setTab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height-50) style:UITableViewStyleGrouped];
     setTab.dataSource = self;
     setTab.delegate = self;
@@ -38,10 +34,10 @@
     [setTab release];
 	// Do any additional setup after loading the view.
 }
+#pragma mark--tableviewcell的代理方法
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 3;
-    
 }
 -(NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -65,7 +61,6 @@
             case 1:
                 cell.textLabel.text = @"字体颜色";
                 break;
-                
             default:
                 break;
         }
@@ -84,7 +79,6 @@
             case 1:
                 cell.textLabel.text = @"意见反馈";
                 break;
-                
             default:
                 break;
         }
@@ -93,7 +87,6 @@
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"给个好评";
-                
                 break;
             case 1:
                 cell.textLabel.text = @"更多应用";
@@ -101,14 +94,13 @@
             case 2:
                 cell.textLabel.text = @"关于我们";
                 break;
-                
             default:
                 break;
         }
-
     }
     return cell;
 }
+#pragma mark--点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
@@ -116,7 +108,6 @@
             case 0:
                 [self clearCacheData];
                 break;
-                
             default:
                 break;
         }
@@ -126,7 +117,6 @@
             case 1:
                 [self goToFeedBack];
                 break;
-                
             default:
                 break;
         }
@@ -139,22 +129,20 @@
             case 2:
                 [self goToAboutUSPage];
                 break;
-                
             default:
                 break;
         }
     }
 }
+#pragma mark--清除缓存
 -(void)clearCacheData
 {
     UIAlertView *tips = [[[UIAlertView alloc] initWithTitle:nil message:@"清除缓存?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] autorelease];
     [tips show];
-    
-    
 }
+#pragma mark--推送设置
 -(void)isGetNotifation:(UISwitch *)sender
 {
-    
     if (sender.on == YES) {
         UIAlertView *tips = [[[UIAlertView alloc] initWithTitle:nil message:@"已开启推送" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
         [tips show];
@@ -162,28 +150,29 @@
     {
         UIAlertView *tips = [[[UIAlertView alloc] initWithTitle:nil message:@"已关闭推送" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
         [tips show];
-        
     }
 }
+#pragma mark--千万关于我们
 -(void)goToAboutUSPage
 {
     AboutUSViewController *usPage = [[AboutUSViewController alloc] init];
-    
     [self.navigationController pushViewController:usPage animated:YES];
     [usPage release];
 }
+#pragma mark--意见反馈
 -(void)goToFeedBack
 {
     FeedBackpage *feed = [[FeedBackpage alloc] init];
     [self.navigationController pushViewController:feed animated:YES];
     [feed release];
-    
 }
+#pragma mark--给个好评
 -(void)givePraise
 {
     NSString *url = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d",626186545];//评论
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
+#pragma mark--alertView的代理方法
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex==1) {

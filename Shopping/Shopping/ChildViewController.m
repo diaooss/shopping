@@ -8,7 +8,7 @@
 
 #import "ChildViewController.h"
 #import "ContentViewController.h"
-
+#import "DetailViewController.h"
 @interface ChildViewController ()<ViewPagerDelegate,ViewPagerDataSource>
 
 @end
@@ -29,17 +29,13 @@
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     self.dataSource = self;
     self.delegate = self;
-    
-    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -50,7 +46,6 @@
     return [_detailCateGoryArry count];
 }
 - (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index {
-    
     UILabel *label = [UILabel new];
     label.text = [_detailCateGoryArry objectAtIndex:index];
     label.backgroundColor = [UIColor clearColor];
@@ -59,29 +54,29 @@
     label.textColor = [UIColor blackColor];
     [label sizeToFit];
     return label;
-    
-    
 }
-
 - (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index {
     if (index==0) {
         ContentViewController *cvc = [[ContentViewController alloc] init];
+        cvc.cellDelegate = self;
         return [cvc autorelease];
-        
-        
-    }
+}
     ContentViewController *cvc = [[ContentViewController alloc] init];
     return [cvc autorelease];
-    
+}
+-(void)postTheGoodsID:(NSString *)ID
+{
+    DetailViewController *detailPage = [[DetailViewController alloc] init];
+    detailPage.navigationItem.title = ID;
+    [self.navigationController pushViewController:detailPage animated:YES];
+    [detailPage release];
 }
 - (void)viewPager:(ViewPagerController *)viewPager didChangeTabToIndex:(NSUInteger)index
 {
     NSLog(@"didChanged");
 }
-
 #pragma mark - ViewPagerDelegate
 - (CGFloat)viewPager:(ViewPagerController *)viewPager valueForOption:(ViewPagerOption)option withDefault:(CGFloat)value {
-    
     switch (option) {
         case ViewPagerOptionStartFromSecondTab:
             return 1.0;
@@ -95,11 +90,9 @@
         default:
             break;
     }
-    
     return value;
 }
 - (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color {
-    
     switch (component) {
         case ViewPagerIndicator:
             return [[UIColor redColor] colorWithAlphaComponent:0.64];
@@ -107,10 +100,6 @@
         default:
             break;
     }
-    
     return color;
 }
-
-
-
 @end

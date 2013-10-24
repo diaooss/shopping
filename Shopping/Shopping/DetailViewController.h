@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *detailTab;
+}
 
 @end
